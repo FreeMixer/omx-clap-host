@@ -1,0 +1,12 @@
+remote: 
+remote: Create a pull request for 'lane/docs-omx-clap-host-building' on GitHub by visiting:        
+remote:      https://github.com/FreeMixer/omx-clap-host/pull/new/lane/docs-omx-clap-host-building        
+remote: 
+To github.com:FreeMixer/omx-clap-host.git
+ ! [rejected]        HEAD -> lane/docs-omx-clap-host-building (non-fast-forward)
+error: failed to push some refs to 'github.com:FreeMixer/omx-clap-host.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+2026-10-02T10:01:24Z post-commit push FAILED for lane/docs-omx-clap-host-building (origin unreachable or rejected)
