@@ -143,7 +143,7 @@ clean:
 -include $(wildcard src/*.d)
 
 # the CLAP lifecycle against a plugin, no jack needed; the layouts the host refuses come from a fake .clap
-test: tests/clap_host_test tests/fake.clap tests/fake_synth.clap test-scan test-core
+test: tests/clap_host_test tests/fake.clap tests/fake_synth.clap test-scan test-core test-readme
 	./tests/clap_host_test $(CLAP_TEST_PLUGIN) $(abspath tests/fake.clap) $(abspath tests/fake_synth.clap)
 
 # the scanner against the fake plugin, one that crashes, a broken file, a directory walk, omx-delay.clap and the fake synth
@@ -151,9 +151,13 @@ test-scan: $(SCAN_PROG) tests/clap_scan_test tests/fake.clap tests/crash.clap te
 	./tests/clap_scan_test ./$(SCAN_PROG) $(abspath tests/fake.clap) $(abspath tests/crash.clap) $(CLAP_TEST_PLUGIN) $(abspath tests/fake_synth.clap)
 
 # the same without omx-delay.clap: only the fake plugin's checks
-test-fake: tests/clap_host_test tests/fake.clap tests/fake_synth.clap $(SCAN_PROG) tests/clap_scan_test tests/crash.clap test-core
+test-fake: tests/clap_host_test tests/fake.clap tests/fake_synth.clap $(SCAN_PROG) tests/clap_scan_test tests/crash.clap test-core test-readme
 	./tests/clap_host_test - $(abspath tests/fake.clap) $(abspath tests/fake_synth.clap)
 	./tests/clap_scan_test ./$(SCAN_PROG) $(abspath tests/fake.clap) $(abspath tests/crash.clap) - $(abspath tests/fake_synth.clap)
+
+# the README shows no build command: building from source is BUILDING.md's
+test-readme:
+	sh tests/readme-build.sh README.md BUILDING.md
 
 tests/clap_host_test: tests/clap_host_test.c $(CORE_SO)
 	$(CC) $(INCS) $(CFLAGS) -Werror -o $@ $< $(CORE_LINK_TEST) -lpthread -lm
